@@ -220,6 +220,16 @@ public class BTNavigationDropdownMenu: UIView {
         }
     }
     
+    public var selectedIndexPath: Int {
+        get {
+            return self.tableView.selectedIndexPath!
+        }
+        set(value) {
+            self.tableView.selectedIndexPath = value
+            self.setMenuTitle("\(self.items[value])")
+        }
+    }
+    
     public var didSelectItemAtIndexHandler: ((indexPath: Int) -> ())?
     public var isShown: Bool!
 
@@ -375,7 +385,7 @@ public class BTNavigationDropdownMenu: UIView {
         self.arrowTintColor = self.configuration.arrowTintColor
     }
     
-    func showMenu() {
+    public func showMenu() {
         self.menuWrapper.frame.origin.y = self.navigationController!.navigationBar.frame.maxY
         
         self.isShown = true
@@ -417,7 +427,7 @@ public class BTNavigationDropdownMenu: UIView {
         )
     }
     
-    func hideMenu() {
+    public func hideMenu() {
         // Rotate arrow
         self.rotateArrow()
         
@@ -638,6 +648,7 @@ class BTTableViewCell: UITableViewCell {
         } else {
             self.textLabel!.frame = CGRectMake(-horizontalMargin, 0, cellContentFrame.width, cellContentFrame.height)
         }
+        self.textLabel!.textColor = self.configuration.cellTextLabelColor
         
         // Checkmark icon
         if self.textLabel!.textAlignment == .Center {
