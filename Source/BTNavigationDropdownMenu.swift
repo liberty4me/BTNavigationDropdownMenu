@@ -89,6 +89,26 @@ public class BTNavigationDropdownMenu: UIView {
         }
     }
     
+    // The alignment of the text inside cell. Default is left
+    public var cellTextAlignment:NSTextAlignment! {
+        get {
+            return self.configuration.cellTextAlignment
+        }
+        set(value) {
+            self.configuration.cellTextAlignment = value
+        }
+    }
+    // The left margin of the text inside cell. Default is 20
+    public var cellTextLeftMargin:CGFloat {
+        get {
+            return self.configuration.cellTextLeftMargin
+        }
+        set(value) {
+            self.configuration.cellTextLeftMargin = value
+        }
+    }
+    
+    
     // The color of the cell when the cell is selected. Default is lightGrayColor()
     public var cellSelectionColor: UIColor! {
         get {
@@ -376,6 +396,8 @@ class BTConfiguration {
     var cellSeparatorColor: UIColor?
     var cellTextLabelColor: UIColor?
     var cellTextLabelFont: UIFont!
+    var cellTextAlignment:NSTextAlignment!
+    var cellTextLeftMargin:CGFloat!
     var cellSelectionColor: UIColor?
     var checkMarkImage: UIImage!
     var arrowImage: UIImage!
@@ -403,6 +425,8 @@ class BTConfiguration {
         self.cellSeparatorColor = UIColor.darkGrayColor()
         self.cellTextLabelColor = UIColor.darkGrayColor()
         self.cellTextLabelFont = UIFont(name: "HelveticaNeue-Bold", size: 17)
+        self.cellTextAlignment = NSTextAlignment.Left
+        self.cellTextLeftMargin = 0
         self.cellSelectionColor = UIColor.lightGrayColor()
         self.checkMarkImage = UIImage(contentsOfFile: checkMarkImagePath!)
         self.animationDuration = 0.5
@@ -497,10 +521,10 @@ class BTTableViewCell: UITableViewCell {
         cellContentFrame = CGRectMake(0, 0, (UIApplication.sharedApplication().keyWindow?.frame.width)!, self.configuration.cellHeight)
         self.contentView.backgroundColor = self.configuration.cellBackgroundColor
         self.selectionStyle = UITableViewCellSelectionStyle.None
-        self.textLabel!.textAlignment = NSTextAlignment.Left
+        self.textLabel!.textAlignment = self.configuration.cellTextAlignment
         self.textLabel!.textColor = self.configuration.cellTextLabelColor
         self.textLabel!.font = self.configuration.cellTextLabelFont
-        self.textLabel!.frame = CGRectMake(20, 0, cellContentFrame.width, cellContentFrame.height)
+        self.textLabel!.frame = CGRectMake(self.configuration.cellTextLeftMargin, 0, cellContentFrame.width, cellContentFrame.height)
         
         
         // Checkmark icon
