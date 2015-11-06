@@ -311,7 +311,7 @@ public class BTNavigationDropdownMenu: UIView {
         self.cellTextLabelColor = self.navigationController?.navigationBar.titleTextAttributes?[NSForegroundColorAttributeName] as? UIColor
     }
     
-    func showMenu() {
+    public func showMenu() {
         self.menuWrapper.frame.origin.y = self.navigationController!.navigationBar.frame.maxY
         
         // Table view header
@@ -349,7 +349,7 @@ public class BTNavigationDropdownMenu: UIView {
         )
     }
     
-    func hideMenu() {
+    public func hideMenu() {
         // Rotate arrow
         self.rotateArrow()
         
