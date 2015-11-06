@@ -180,6 +180,16 @@ public class BTNavigationDropdownMenu: UIView {
         }
     }
     
+    public var selectedIndexPath: Int {
+        get {
+            return self.tableView.selectedIndexPath
+        }
+        set(value) {
+            self.tableView.selectedIndexPath = value
+            self.setMenuTitle("\(self.items[value])")
+        }
+    }
+    
     public var didSelectItemAtIndexHandler: ((indexPath: Int) -> ())?
     
     private var navigationController: UINavigationController?
